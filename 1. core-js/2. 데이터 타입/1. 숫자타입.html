@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    var integer = 100; //정수 (number)
+    var float = 3.14; //실수 (number)
+    
+    //타입 확인용 키워드 typeof
+    console.log(typeof integer);
+    console.log(typeof float);
+
+    var bin = 0b1000010; // 2진수 입력방법: '0b'를 앞에 붙인다.
+    console.log(bin); // 66
+
+    var oct = 0o102; // 8진수 입력방법: '0o'를 앞에 붙인다.
+    console.log(oct); // 66
+
+    var hex = 0xAC00; // 16진수 입력방법: '0o'를 앞에 붙인다.  
+    console.log(hex); // 44032
+  
+    console.log(10 / 4);
+
+    //어떠한 숫자든 0으로 나눌 수 없습니다.
+    console.log(30 / 0); // infinity
+
+    // NaN : Not a Number -> 잘못된 연산, 표현할 수 없는 값이다.
+    console.log(30 / '메롱');
+
+  </script>
+</body>
+</html>

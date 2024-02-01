@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var age = +prompt('나이를 입력하세요.');
+
+
+    /*
+    else if : 조건식의 결과가 false일 때 분기를 나눌 수 있음.
+    중첩 if : 조건식의 결과가 true일 때 분기를 나눌 수 있음.
+
+    개수는 따로 지정된 것 없음. 원하는 만큼 분기를 나눌 수 있다.
+    */ 
+
+    if (age > 19) {
+      if (age < 40) {
+        alert('당신은 청년입니다.');
+      }else if (age < 65) {
+        alert('당신은 장년입니다.');
+      } else {
+        alert('당신은 노년입니다.');
+      }
+    } else if (age >= 17){
+      alert('당신은 고등학생입니다.');
+    } else if (age >= 14) {
+      alert('당신은 중학생입니다.');
+    } else if (age >= 8) {
+      alert('당신은 초등학생입니다.');
+    } else {
+      alert('당신은 미취학 아동입니다.');
+    }
+  </script>
+</body>
+</html>

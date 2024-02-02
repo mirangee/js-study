@@ -22,26 +22,44 @@
         - while문을 if else 로 나눠서 두번 쓰는 것은 지양하겠습니다.
     */
 
-    var x = +prompt('첫 번째 정수를 입력해 주세요.');
-    var y = +prompt('두 번째 정수를 입력해 주세요.');
-    var begin;
-    var total = 0;
+    // var x = +prompt('첫 번째 정수를 입력하세요.');
+    // var y = +prompt('두 번째 정수를 입력하세요.');
+    // var total = 0;
+    // var i, j;
 
-    if (x < y) {
-      begin = x;
-      while (x <= y) {
-        total += x;
-        x++;
-      }
-      console.log(`${begin}에서 ${y}까지 누적 합계는 ${total}입니다.`);
-    } else {
-      begin = y;
-      while (y <= x) {
-        total += y;
-        y++;
-      }
-      console.log(`${begin}에서 ${x}까지 누적 합계는 ${total}입니다.`);
+    // if (x <= y) {
+    //   i = x;
+    //   j = y;
+    // } else {
+    //   i = y;
+    //   j = x;
+    // }
+
+    // while (i <= j) {
+    //   total += i;
+    //   i++;
+    // }
+    // console.log(`${x}에서 ${y}까지 누적 합계는 ${total}입니다.`);
+
+    var x = +prompt('첫 번째 정수를 입력하세요.');
+    var y = +prompt('두 번째 정수를 입력하세요.');
+    var total = 0;
+    var temp;
+
+    if (x > y) {
+      temp = x;
+      x = y;
+      y = temp;
     }
+
+    var n = x;
+
+    while (x <= y) {
+      total += x;
+      x++;
+    }
+    console.log(`${n}에서 ${y}까지 누적 합계는 ${total}입니다.`);
+
   </script>
 </body>
 

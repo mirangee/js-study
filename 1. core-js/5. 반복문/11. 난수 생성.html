@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Math.random() -> 0.0이상 ~ 1.0미만의 랜덤 실수 발생.
+    
+    /*
+    1 ~ 10 사이의 랜덤 정수를 생성.
+    Math.random() -> 0.0 <= ~ < 1.0
+    Math.floor(Math.random() * 10) -> 0 <= ~ < 10
+    Math.floor(Math.random() * 10) + 1 -> 1 <= ~ < 11
+    =================================================
+
+    10 ~ 100
+    Math.random() -> 0.0 <= ~ < 1.0
+    Math.random() * 100 -> 0.0 <= ~ < 100.0
+    Math.floor(Math.random() * 100) -> 0 <= ~ < 100
+    Math.floor(Math.random() * 100) + 10 -> 10 <= ~ < 110
+    Math.floor(Math.random() * 91) + 10 -> 10 <= ~ < 101
+
+    ===================================================
+
+    범위가 주어진 상태에서 정수 난수 생성하는 방법:
+    예시: 36 ~ 147
+
+    1. 우리는 Math.random()을 이용할 것이다.
+    시작 범위가 0.0이므로 무엇을 곱해도 시작은 0이 된다.
+    그러므로, 시작 범위를 36으로 만드려면 n을 곱한 후 36을 더해야 한다.  
+    
+    Math.random() -> 0.0 <= ~ < 1.0  
+
+    2. 36을 더할 것을 예상한다면 끝 범위인 147에서 36을 빼야 한다. '147-36 = 111'
+    그리고 111을 Math.random()과 곱해준다. 그런데 이렇게 하면 '1.0 미만 * 111'이므로
+    '이하'를 만드려면 1을 더한 후 곱해줘야 한다.
+
+    3. 결과적으로 다음과 같다.
+    Math.floor(Math.random()*112) + 36
+
+    */
+
+    // 135 ~ 211 범위의 정수 난수 생성
+    console.log(Math.floor(Math.random()*77) + 135);
+    
+    
+  </script>
+</body>
+</html>

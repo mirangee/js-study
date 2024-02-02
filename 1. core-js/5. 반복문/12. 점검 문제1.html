@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1 ~ 100 사이의 랜덤한 숫자하나가 정답으로 주어진다.
+    // 사용자는 이 사이의 숫자를 입력할 수 있어야 한다.
+    // 시스템은 입력한 숫자를 판단하여 up인지 down인지 알려줘야 한다.
+    // 만약 정답을 맞추지 못하면 지속해서 입력을 받고 결과를 알려준다.
+    // 정답을 맞추면 맞췄다는 메시지와 함께 프로그램을 종료한다.
+
+    // 사용자들은 입력 기회가 5번으로 제한된다.
+    // 즉, 5번 안에 정답을 맞추지 못할 경우 게임이 강제종료된다.
+
+    // 사용자는 게임 시작전에 난이도를 설정할 수 있다.
+    // 난이도는 상(3번), 중(6번), 하(10번) 난이도가 존재하며
+    // 난이도별 입력 횟수제한이 다르다.
+
+    var num = Math.floor(Math.random() * 100) + 1;
+    console.log(num);
+    var level = +prompt('난이도를 선택하세요. \n 1. 상(기회 3회) 2. 중(기회 6회) 3. 하(기회 10회)');
+    var chance;
+    var range1 = 1;
+    var range2 = 100;
+
+    if (level === 1) {
+      chance = 3;
+    } else if (level === 2) {
+      chance = 6;
+    } else if (level === 3) {
+      chance = 10;
+    } else {
+      alert('잘못 눌렀으니 난이도 상으로 가십시다');
+      chance = 3;
+    }
+
+    while (true) {
+      if (chance !== 0) {
+        var answer = +prompt(`숫자를 입력하세요.[${range1} ~ ${range2}]`);
+        if (answer < range1 || answer > range2) {
+          alert('범위 안에서 입력해 주세요.');
+          continue;
+        }
+
+        if (num === answer) {
+          alert('정답입니다! 짝짝짝');
+          break;
+        } else if (num < answer) {
+          alert('DOWN!!!');
+          range2 = answer - 1;
+          chance--;
+          alert(`남은 기회는 ${chance}회입니다.`);
+          continue;
+        } else {
+          alert('UP!!!');
+          range1 = answer + 1;
+          chance--;
+          alert(`남은 기회는 ${chance}회입니다.`);
+          continue;
+        }
+      } else {
+        alert(`실패! 정답은 ${num}입니다.`);
+        break;
+      }
+    }
+
+    // 초기 난이도 설정 선택창 띄우기
+    var level = +prompt('난이도를 선택하세요.\n# [1. 상(3번의 기회) | 2. 중(6번의 기회) | 3. 하(10번의 기회)]')
+    
+    // 초기 카운트 수
+    var initCount;
+
+    if(level === 1) {
+      initCount = 3;
+    } else if(level === 2) {
+      initCount = 6;
+    } else if(level === 3) {
+      initCount = 10;
+    } else {
+      alert('잘못 입력했으니까 난이도 상으로 강제 조정됩니다.');
+      initCount = 3;
+    }
+
+    
+    // 선생님 풀이 버전
+    // // 카운트다운 변수
+    // var countdown = initCount;
+
+    // // 실제로 정답으로 사용할 랜덤 정수 만들기
+    // var secret = Math.floor(Math.random()*100) + 1;
+    // console.log('secret: ' + secret);
+
+    // // 입력값의 최소, 최대값
+    // var min = 1, max = 100;
+
+    // while(true) {
+
+    //   // 사용자의 정답 입력창
+    //   var answer = +prompt(`숫자를 입력하세요! [${min} ~ ${max}]`);
+
+    //   // 입력값 유효성 검사
+    //   // 지금 입력한 값이 유효 범위 내의 값인가?
+    //   if(answer < min || answer > max) {
+    //     alert('범위 안의 값을 입력하세요!');
+    //     continue;
+    //   }
+
+    //   //코드의 흐름이 이쪽으로 왔다? 유효한 값을 입력한 것이다. (바로 위 if문을 제낌)
+
+    //   countdown--; // 카운트 감소
+
+    //   //업다운 판단
+    //   if(secret === answer) {
+    //     alert(`정답입니다! ${initCount - countdown}번만에 맞추셨네요~!`); // 게임 종료 조건 1
+    //     break;
+    //   } else if(secret > answer) {
+    //     alert('UP!!!');
+    //     min = answer + 1;
+    //   } else {
+    //     alert('DOWN!!!');
+    //     max = answer - 1;
+    //   }
+
+    //   // 추가 게임 종료 조건
+    //   if(countdown === 0) {
+    //     alert(`패배하셨습니다 ㅠㅠ 정답은 ${secret} 였습니다~~~`);
+    //     break;
+    //   } else {
+    //     alert(`${countdown}번의 기회가 남았습니다.`);
+    //   }
+
+    // } // end while true
+
+    // alert('수고하셨습니다!');
+
+  </script>
+</body>
+
+</html>

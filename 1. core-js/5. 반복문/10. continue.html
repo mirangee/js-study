@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //for문에서 continue는 증감식을 바로 발동시킵니다.
+    //continue 이하의 문장은 실행되지 않습니다.
+    for(var i = 1; i <= 10; i++) {
+      if(i % 2 === 0) {
+        continue;
+      }
+
+      console.log('i :' + i);
+    } 
+    console.log('반복문 종료');
+
+    while(true) {
+      var n = +prompt('숫자를 입력하세요');
+      if (n === 0) {
+        break;
+      } else if(n === 1) {
+        continue;
+      }
+
+      //while 문에서는 continue를 만나면 증감식이 동작하는 것이 아니라
+      //조건식으로 바로 이동합니다.(for문과 차이점 존재)
+      alert('아직 안 끝났지롱~');
+    }
+    alert('끝났지롱~');
+  </script>
+</body>
+</html>

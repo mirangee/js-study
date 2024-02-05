@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var ex = 10 + '20'; // 1020 숫자를 문자로 변환
+    console.log(ex);
+
+    var ex2 = 10 * '3'; // 30 문자를 숫자로 변환
+    console.log(ex2);
+
+    var ex2 = 100 + ''; // 숫자를 문자로 변환
+    console.log(ex2); // 100
+    console.log(typeof ex2); // string
+
+
+    // 문자열 타입의 암묵적 숫자 변환 -> prompt에서 숫자를 입력 받고 싶을 때 +prompt로 한 것도 이것을 이용함.
+    var ex3 = +'550' //550 number(좌항을 비어두고 숫자인 문자타입을 입력하면 숫자형이 된다.)
+    ex3 = +'false' // NaN(문자 타입을 숫자로 변환하는 것은 불가)
+
+
+    // 논리 타입을 암묵적 숫자 변환
+    ex3 = +true; //1
+    ex3 = +false; //0
+
+    ex3 = +null; //0
+    ex3 = +NaN //NaN
+
+    console.log(ex3); // 550
+
+    console.log('----------------------------------');
+
+    //Truthy, Falsy - 부정적인 건 false, 값이 있으면 true
+    
+    // undefined, null, 0, NaN, ''(빈 문자열)은 모두 false
+    // 나머지는 모두 true로 인식합니다.
+
+    // 함수가 반환하는 값, 비동기 통신의 결과값들이 정확하게 어떤 값인지 모르더라도 
+    // 해당 값이 띄고 있는 논리적 평가에 따라 조건문을 좀 더 수월하게 구성할 수 있습니다.
+
+    
+    if ('') console.log('OK1'); // false
+    if ('hello') console.log('OK2'); 
+    if (undefined) console.log('OK3'); // false
+    if (null) console.log('OK4'); // false
+    if (350) console.log('OK5');
+    if (NaN) console.log('OK6'); // false
+    if (0) console.log('OK7'); // false
+    if ([1, 2, 3]) console.log('OK8');
+
+
+
+  </script>
+</body>
+
+</html>

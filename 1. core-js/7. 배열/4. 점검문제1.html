@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+      - Quiz. 
+      아래 요구사항에 맞는 코드를 작성하고 
+      브라우저에서 실행하여 테스트하세요.
+      - 요구사항
+      1. prompt 창을 띄워 사용자에게 숫자를 입력해 달라고 요청한 후, 
+        입력받은 값들을 배열에 순차적으로 저장합니다.
+        
+      2. '그만'이라고 입력하면 질문을 멈추고
+        입력했던 숫자배열과 숫자의 총합(배열 요소의 합)을 계산하여 출력하세요.
+    */
+
+    var list = [0];
+    var total = 0;
+
+    while(true) {
+      // '그만'이라는 문자열이 들어올 수 있기 때문에 +를 붙이지 않음
+      var input = prompt('숫자를 입력하세요. \n입력을 중단하려면 "그만"이라고 입력하세요.');
+      console.log(input);
+      if (input === "그만") {
+        // confirm: 확인, 취소 버튼이 있는 알림창.
+        // 확인을 누를 시에 true, 취소를 누르면 false 반환됩니다. if문과 주로 많이 사용.
+        if (confirm('정말 그만 두시겠어요?')) {
+          break; 
+        }
+        else {
+          continue;
+        } 
+      } else {
+        //입력 받은 숫자를 배열에 저장
+        list.push(parseInt(input));
+      }
+    }
+
+    //총합 구하기
+    for(var i = 0; i < list.length; i++) {
+      total += list[i]; 
+    }
+    alert(`입력한 값의 합은 ${total}입니다.`);
+
+    //선생님 버전
+
+    // var numbers = [];
+
+    // while(true) {
+    //   // '그만' 문자열이 들어올 수 있기 때문에 +를 붙이지 않음.
+    //   var inputData = prompt('숫자를 입력하세요!\n그만 두시려면 "그만" 이라고 입력하세요!');
+
+    //   if(inputData === '그만') {
+    //     // confirm: 확인, 취소 버튼이 있는 알림창.
+    //     // 확인을 누를 시에 true, 취소를 누르면 false가 반환됩니다. if문과 주로 많이 사용.
+    //     if(confirm('정말 그만 두시겠어요?')) break;
+    //     else continue;
+        
+    //   }
+
+    //   if(!inputData) { // prompt에 아무것도 입력하지 않고 확인 -> 빈 문자열 '' -> falsy를 띠게 됨.
+    //     alert('값을 정확하게 입력하세요!');
+    //     continue;
+    //   }
+
+    //   // 입력받은 숫자를 배열에 저장
+    //   numbers.push(+inputData);
+    // }
+
+    // // 총합 구하기
+    // var total = 0;
+    // // for(var i=0; i<numbers.length; i++) {
+    // //   total += numbers[i];
+    // // }
+
+    // for(var n of numbers) {
+    //   total += n;
+    // }
+
+    // alert(`입력한 숫자 목록: ${numbers}\n입력한 숫자 총합: ${total}`);
+
+  </script>
+</body>
+
+</html>

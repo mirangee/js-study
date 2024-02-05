@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+        객체 생성
+        객체 리터럴 방식을 많이 사용합니다.
+        클래스 없이 0개 이상의 프로퍼티로 구성된 집합 자료 구조
+        프로퍼티는 키와 값의 쌍으로 구성됩니다. (자바의 map과 유사)
+    */
+
+    var dog = {
+      name : '뽀삐',
+      kind : '시츄',
+      age : 3,
+      favorite : ['산책', '간식']
+    };
+
+    var cat = {
+      name : '야옹이',
+      kind : '페르시안',
+      age : 2,
+      favorite : ['낮잠', '츄르', '실뭉치']
+    }
+
+    console.log(typeof dog); //object
+
+    //객체 프로퍼티를 참조하는 방법
+    console.log(dog.name);
+    console.log(cat.name);
+    console.log(dog.age);
+    console.log(cat.favorite[1]);
+
+
+    dog.favorite.push('뼈다귀');
+    console.log(dog);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 우리반 학생들 4과목 점수(국영수탐)
+    // var kim = [67, 89, 92, 32];
+    // var lee = [100, 87, 55, 67];
+    // var park = [23, 44, 100, 22];
+
+    var ourStudentScore = [
+      [67, 89, 92, 32],
+      [100, 87, 55, 67],
+      [23, 44, 100, 22]
+    ];
+
+    console.log(ourStudentScore);
+    console.log(ourStudentScore[1]); //array
+    console.log(ourStudentScore[0][2]); //더블 인덱싱(0번 학생의 2번 인덱스 점수 92)
+
+    // 반 평균을 구해봅시다.
+
+    // 한 학생의 평균 총합을 저장할 변수
+    var ourAverage = 0;
+
+    for(var studentScore of ourStudentScore) {
+      // studentScore 변수에는 한 학생의 점수 배열이 전달됨.
+      var eachTotal = 0; //한 학생의 4과목 총점
+      for(var score of studentScore) {
+        // score 변수에는 한 학생의 점수가 하나씩 전달됨.
+        eachTotal += score; // 4과목 점수를 누적해서 더함
+      }
+
+      //한 학생의 평균 점수 구하기
+      var eachAverage = eachTotal/studentScore.length; //한 학생의 점수 합계를 과목 수로 나눔
+      
+      ourAverage += eachAverage; // 모든 학생의 평균을 누적해서 더함
+    }
+    
+    //우리반 평균
+    var classAvg = ourAverage/ourStudentScore.length;
+
+    console.log(`우리반 평균 점수는 ${Math.round(classAvg*100)/100}입니다.`);
+    //Math.round() 반올림 함수에 자릿수를 설정하려면 원하는 자릿수 만큼 곱했다가 나눠라.
+    
+
+  </script>
+</body>
+
+</html>

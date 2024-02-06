@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //매개변수(parameter): 함수를 정의할 때 함수 바깥쪽에서 함수 내부로
+    //들어오는 데이터를 저장하는 변수
+
+    //begin부터 end까지의 총합을 구해주는 함수
+    function calcRangeTotal(begin, end) {
+      var total = 0;
+      for (var i = begin; i <= end; i++) {
+        total += i;
+      }
+      return total;
+    }
+
+    //매개변수가 없는 경우
+    function selectRandomFood() {
+      var rn = Math.random();
+      return rn > 0.5 ? '짜장면' : '짬뽕';
+    }
+    console.log(selectRandomFood());
+
+    //매개변수의 default값 지정(ES6)
+    //매개변수가 없으면 자동으로 '한국어'를 탄다.
+    function sayHello(lang = '한국어') {
+      if (lang === '한국어') {
+        alert('안녕하세요');
+      } else if (lang === '영어') {
+        alert('헬로우');
+      } else if (lang === '일본어') {
+        alert('곤니찌와');
+      }
+    }
+
+      sayHello('한국어');
+      // 자바스크립트 함수는 매개변수의 개수를 다르게 주더라도 정상 작동됩니다.
+      // 하지만 좋은 코드가 절대 아닙니다. 이렇게 쓰지 말 것.
+      var totalNumber = calcRangeTotal(10, 30, 40, 50, 60, 70);
+      console.log(`결과값: ${totalNumber}`);
+  </script>
+</body>
+
+</html>

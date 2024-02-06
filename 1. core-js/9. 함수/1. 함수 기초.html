@@ -6,6 +6,45 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script>
+
+    //함수의 선언
+    // 함수의 이름은 동사적 기능이 내포되도록 짓는다.
+
+    function calcTotal(end) {
+      console.log('함수가 호출됨');
+      var total = 0;
+      for (var i = 1; i <= end; i++) {
+        total += i;
+      }
+      return total;
+    }
+
+    function add(n1, n2) {
+      return n1 + n2;
+    }
+
+    //함수를 리터럴 방식으로 선언
+    var add2 = function(n1, n2){
+      return n1 + n2;
+    };
+
+    //함수의 호출
+    //함수의 return 값은 함수를 호출한 곳으로 반환된다.
+    console.log(`합계 : ${calcTotal(100)}`);
+
+    //함수의 호출 행위 자체가 하나의 return값으로 처리될 수 있기 때문에
+    //반환값을 변수에 대입하는 것도 가능하다.
+
+    var result = calcTotal(50);
+    console.log(result);
+    console.log(add(10, 20));
+    console.log(add2(10, 20));
+
+    //함수를 변수에 할당
+    var ct = calcTotal;
+    console.log(ct(100));
+
+  </script>
 </body>
 </html>

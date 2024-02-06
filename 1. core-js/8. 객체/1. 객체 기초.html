@@ -41,6 +41,37 @@
 
     dog.favorite.push('뼈다귀');
     console.log(dog);
+
+    console.log('--------------------------------');
+
+    // 프로퍼티 참조의 다른 방식
+    console.log(dog.kind);
+    console.log(dog['kind']);
+
+    // 프로퍼티 값 수정
+    dog.age = 5;
+    console.log(dog);
+    cat.favorite[1] = '고등어';
+    console.log(cat);
+
+    console.log('--------------------------------');
+
+    // 프로퍼티 동적 추가
+    dog.owner = '김철수';
+    console.log(dog);
+    
+    // 프로퍼티 삭제
+    delete dog.owner;
+    console.log(dog);
+
+    // for ~ in(ES6)
+    for( var key in cat) {
+      console.log(`key : ${key}, value : ${cat[key]}`);
+    }
+
+    // 객체의 프로퍼티 키의 존재 유무 확인 (in 키워드)
+    var flag = 'owner' in cat; // true false 값으로 도출되므로 조건식과 많이 사용됨
+    console.log(flag);
   </script>
 </body>
 

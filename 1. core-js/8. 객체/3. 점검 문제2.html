@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var userInfo = {
+      userList: [{
+          account: 'kim1234',
+          password: 'kkk1111',
+          username: '김철수'
+        },
+        {
+          account: 'park4321',
+          password: 'ppp1234',
+          username: '박영희'
+        },
+        {
+          account: 'hong9876',
+          password: 'hhh6789',
+          username: '홍길동'
+        }
+      ]
+    }
+
+    /*
+      - 요구사항
+      1. 사용자에게 계정을 입력받으세요.
+      2. 입력된 계정이 존재하는 계정이 아니라면
+        "존재하지 않는 회원입니다"를 출력하세요.
+      3. 계정이 존재한다면 비밀번호를 입력받으세요.
+      4. 비밀번호가 입력한 아이디에 대응해서 일치한다면
+        "xxx님 환영합니다!"을 출력하고 반복문을 탈출하세요.
+      5. 비밀번호가 다르다면 "비밀번호가 틀렸습니다" 를 출력하세요.
+      6. 로그인이 성공할때까지 반복하세요.
+    */
+
+    // 회원객체(userInfo) 안에 있는 회원 배열(userInfo.userList)를 따로 꺼내서
+    // 변수로 선언하면 작성 자체가 쉬워질 것입니다.
+
+    var users = userInfo.userList; // 배열
+    outer: while (true) {
+      var flag = false;
+      var foundUser = null;
+      var input = prompt('아이디를 입력하세요.');
+      for (var i = 0; i < users.length; i++) {
+        if (input !== users[i].account) {
+          flag = false;
+          continue;
+        } else {
+          alert('계정이 확인되었습니다.');
+          foundUser = users[i];
+          flag = true;
+          break;
+        }
+      }
+      if (flag) {
+        while (flag) {
+          var inputPassword = prompt('비밀번호를 입력하세요.');
+          if (inputPassword === foundUser.password) {
+            alert(`${foundUser.username}님 환영합니다.`);
+            break outer;
+          } else {
+            alert('비밀번호가 틀렸습니다.');
+          }
+        }
+      }else {
+        alert('존재하지 않는 회원입니다.');
+      }
+    }
+
+
+    // var users = userInfo.userList;
+
+    // while(true) {
+
+    //   var inputAccount = prompt('아이디를 입력하세요!');
+
+    //   var foundUser = null; // 사용자가 입력한 아이디와 일치하는 객체를 담을 변수.
+
+    //   for(var user of users) {
+    //     if(inputAccount === user.account) {
+    //       foundUser = user;
+    //       break; // 찾았음? 그럼 더 돌릴 필요 없죠?
+    //     }
+    //   }
+
+    //   // 위의 반복문이 끝났음에도 foundUser가 null이다? -> 일치하는 객체가 없었다.
+    //   if(foundUser === null) {
+    //     alert('아이디가 존재하지 않습니다!');
+    //     continue;
+    //   }
+
+    //   var inputPassword = prompt('비밀번호를 입력하세요!');
+
+    //   if(inputPassword === foundUser.password) {
+    //     alert(`${foundUser.username}님 환영합니다!!!`);
+    //     break;
+    //   } else {
+    //     alert('비밀번호가 틀렸습니다!');
+    //   }
+    // }
+  </script>
+</body>
+
+</html>

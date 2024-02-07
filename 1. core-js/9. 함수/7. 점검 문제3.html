@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      1. 키(cm)와 몸무게(kg)을 인수로 전달받아 
+      2. bmi지수를 계산하여 반환함과 동시에 
+      3. bmi가 25.0이상이면 "당신은 과체중입니다." 
+      18.5이하면 "당신은 저체중입니다." 
+      나머지는 "당신은 정상체중입니다."를 출력하는 
+      calcBMI라는 함수를 정의하고 호출하세요. 
+      # bmi 계산식 : 몸무게(kg) / (키(m) * 키(m)) 
+      # 출력 예시: 
+      "키 -> 178.4cm, 체중-> 78.2kg의 체질량지수는: 24.57입니다"
+    */
+
+    var inputHeight = +prompt('키(cm)를 입력하세요.');
+    var weight = +prompt('몸무게(kg)를 입력하세요.');
+    
+    var myBMI = calcBMI(inputHeight, weight);
+
+    function calcBMI(inputHeight, weight) {
+      var height = inputHeight / 100; //키를 m 단위로 변환
+      var bmi = weight / (height*height); // 제곱은 height**2 라고 작성해도 된다.
+      if (bmi >= 25) {
+        console.log('당신은 과체중입니다.');  
+      } else if (bmi <=18.5) {
+        console.log('당신은 저체중입니다.');  
+      } else {
+        console.log('당신은 정상체중입니다.'); 
+      }
+      var result = Math.round(bmi*100)/100;
+      console.log(`키 -> ${inputHeight}, 체중-> ${weight}의 체질량 지수-> ${result}입니다`);
+
+      return bmi;
+    }
+
+
+    
+  </script>
+</body>
+</html>

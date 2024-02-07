@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /*
+  Q. n개의 정수를 전달하면 해당 정수들의 총합과 평균을 
+     반환하는 함수 calcNumbersTotalAndAverage를 작성하세요.
+*/
+    var result = calcNumbersTotalAndAverage(100, 30, 511, 15, 313);
+    console.log(`총합 : ${result.total} 평균 : ${result.average}`);
+
+
+    function calcNumbersTotalAndAverage(...numbers) {
+      var total = 0;
+      for (var number of numbers) {
+        total += number;
+      }
+      var avg = total / numbers.length;
+
+      return {
+        total, // 프로퍼티의 키를 생략하면 변수명이 키가 됩니다
+               // key 값과 value 값이 같으면 key 값을 생략할 수 있다.
+        average: avg
+      };
+    }
+  </script>
+</body>
+
+</html>

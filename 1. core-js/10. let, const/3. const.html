@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    const x = '메롱';
+    console.log(x);
+    // x = '안메롱'; (x) 상수는 값의 변경이 불가능
+
+    // const와 객체 (객체, 배열, 함수)
+    // const에 변수 하나가 올 때는 그 값을 stack영역에 저장하지만
+    // 객체, 배열, 함수가 올 때는 Heap 영역에 저장된 주소값을 stack 영역에 저장한다.
+    // 따라서, const로 선언된 객체의 프로퍼티는 바꿀 수 있다.
+    const person = {
+      name : 'park',
+      age : 20
+    }
+
+    // 객체 내의 프로퍼티 값을 변경하는 것은 괜찮다.
+    // 객체 주소값이 바뀌는 것은 아니니까.
+    person.name = 'kim';
+    console.log(person.name);
+
+    // 안 되는 코드 (객체 자체를 변경하는 행위)
+    person = {
+      name : 'lee',
+      age : 30
+    }
+  </script>
+</body>
+</html>

@@ -87,15 +87,21 @@
 
 
     //회원 정보 중에 회원 이름만 전부 모아서 배열에 담아줘
-    function filterInfo() {
-      const filteredArray = [];
-      for (let user of userList) {
-        filteredArray.push(user.userName);
+    // 매핑
+    function map(callback) {
+      //특정 프로퍼티를 담을 배열
+      const mappedArray = [];
+      for(let user of userList) {
+        mappedArray.push(callback(user));
       }
-      return filteredArray;
+      return mappedArray;
     }
-    console.log(filterInfo());
 
+    const nameList = map(user => user.userName);
+    console.log(nameList);
+
+    const addressList = map(user => user.address);
+    console.log(addressList)
     
   </script>
 </body>

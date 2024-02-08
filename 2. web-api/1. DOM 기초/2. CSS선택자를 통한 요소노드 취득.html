@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul id = "fruits">
+    <li class = "fr apple">사과</li>
+    <li class = "fr banana">바나나</li>
+    <li class = "fr grape">포도</li>
+    <li class = "fr peach">복숭아</li>
+  </ul>
+  <script>
+    // const $grape = document.querySelector('.grape'); //선택자 문법이 그대로 적용된다.
+    // const $grape = document.querySelector('#fruits li:nth-child(3)'); 
+    const $grape = document.querySelector('.banana + li'); 
+    console.log($grape);
+
+    $grape.textContent = '맛있는 포도'; // textContent: grape가 가지고 있는 텍스트 내용 변경
+
+    // querySelector는 발견된 첫번째 태그만 가져옴.
+    const $fr  = document.querySelector(".fr");
+    console.log($fr);
+
+
+    // querySelectorAll이 가져오는 데이터 묶음은
+    // 배열이 아닌 유사배열이므로, 배열 문법을 사용하기 힘들다.
+    // 그래서 유사배열을 실제 배열로 바꿔서 쓰넌 것이 좋다.
+    const $frAll = document.querySelectorAll(".fr");
+    console.log($frAll); // NodeList
+
+    // $frAll.push('메롱');  사용 불가!!!
+
+    const $fruitsArray = [...$frAll]; // 스프레드 문법으로 배열로 바꾸기
+    
+    const test = $fruitsArray.pop();
+    $fruitsArray.pop().textContent = '오우렌쥐'; // 배열 문법이 사용 가능해짐.
+
+    // 요소를 한 번에 여러 개 취득하는 기타 메서드들도 유사배열형태로 요소가 리턴됩니다.
+    const $frAllByTagName = document.getElementsByTagName('li');
+    console.log($frAllByTagName); // HTMLCollection
+
+    const $frAllByClassName = document.getElementsByClassName('fr');
+    console.log($frAllByClassName); // HTMLCollection
+
+    for(let $f of $fruitsArray) {
+      $f.style.border = '1px dashed tomato';
+      $f.style.margin = '10px';
+      $f.style.fontSize = '30px'; // 단, font-size가 아니라 fontSize(카멜 케이스)로 작성해야 한다.
+      console.log($f);
+    }
+
+  </script>
+</body>
+</html>

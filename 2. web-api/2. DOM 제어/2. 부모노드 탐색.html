@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="wrap">
+    <ul id="fruits">
+      <li class="apple">Apple</li>
+      <li class="banana">Banana</li>
+      <li class="grape">Grape</li>
+    </ul>
+  </div>
+
+  <table id="board">
+    <tr>
+      <td>A</td>
+      <td>B</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>D</td>
+    </tr>
+  </table>
+
+</body>
+
+<script>
+  const $banana = document.querySelector('.banana');
+
+  // 부모 노드 탐색
+  const $parent = $banana.parentNode;
+  console.log($parent);
+
+  const $div = $banana.parentNode.parentNode;
+  console.log($div);
+
+  // 이전 형제 노드 탐색
+  const $prev = $banana.previousElementSibling;
+  console.log($prev);
+  
+  // 다음 형제 노드 탐색
+  const $next = $banana.nextElementSibling;
+  console.log($next);
+
+  // 더 이상 지목할 형제가 없을 시에는 null이 온다.
+  const $next2 = $next.nextElementSibling;
+  console.log($next2);
+
+
+
+  // table 태그는 자식 태그로 tbody를 자동으로 삽입하므로 주의할 것!
+  const $board = document.getElementById('board');
+  console.log($board.children); // tr 두 개가 나올 거라 예상하지만 tbody가 나온다.
+  
+  const $tbody = $board.children[0]; //HTMLCollection의 0번째 인덱스를 지목 -> tbody
+  console.log($tbody.children); // 이렇게 해야 tr 두 개가 나온다.
+</script>
+
+</html>

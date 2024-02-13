@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="greeting">Hello<span>World</span></div>
+  
+</body>
+
+<script>
+  const $div = document.getElementById('greeting');
+  console.log($div.childNodes[0].nodeValue); //Hello
+  console.log($div.textContent); //div 내부에 존재하는 모든 텍스트를 출력함
+
+  // textContent는 마크업을 제외한 텍스트 전체를 지목.
+  // 텍스트 형식으로 태그를 작성해도 모두 텍스트로 인식합니다.
+  $div.textContent = '<span>안녕</span>하세요!';
+</script>
+</html>

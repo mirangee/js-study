@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const userInfo = {
+      userList: [{
+          account: 'kim1234',
+          password: 'kkk1111',
+          username: '김철수'
+        },
+        {
+          account: 'park4321',
+          password: 'ppp1234',
+          username: '박영희'
+        },
+        {
+          account: 'hong9876',
+          password: 'hhh6789',
+          username: '홍길동'
+        }
+      ]
+    }
+
+    /*
+      - 요구사항
+      1. 사용자에게 계정을 입력받으세요.
+      2. 입력된 계정이 존재하는 계정이 아니라면
+        "존재하지 않는 회원입니다"를 출력하세요.
+      3. 계정이 존재한다면 비밀번호를 입력받으세요.
+      4. 비밀번호가 입력한 아이디에 대응해서 일치한다면
+        "xxx님 환영합니다!"을 출력하고 반복문을 탈출하세요.
+      5. 비밀번호가 다르다면 "비밀번호가 틀렸습니다" 를 출력하세요.
+      6. 로그인이 성공할때까지 반복하세요.
+    */
+    const userData = userInfo.userList;
+    
+
+    outer: while (true) {
+      let foundUser = null;
+      let inputId = prompt('아이디를 입력하세요.');
+      for (let user of userData) {
+        if (user.account === inputId) {
+          foundUser = user;
+        }
+      }
+
+      if (foundUser) {
+        let inputPassword = prompt('비밀번호를 입력하세요.');
+        if (foundUser.password === inputPassword) {
+          alert(`${foundUser.username}님 환영합니다!`);
+          break outer;
+        } else {
+          alert('비밀번호가 틀렸습니다.');
+          continue;
+        }
+      } else {
+        alert('존재하지 않는 회원입니다');
+      }
+    }
+
+  </script>
+</body>
+
+</html>

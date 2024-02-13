@@ -35,17 +35,25 @@
   <script>
     const $box = document.querySelector('.box');
 
-    console.log($box.attributes.class.value);
-    console.log($box.getAttribute('class'));
-    console.log($box.className); // className -> 아예 클래스 이름을 모두 바꾸고 싶을 때 사용
+    // 클래스 값을 탐색하는 네 가지 방법
+    console.log($box.attributes.class.value); // 1. attributes 사용
+    console.log($box.getAttribute('class')); // 2. getAttributes() 함수 사용
+    console.log($box.className); // 3. className 프로퍼티 사용 
 
     // $box.setAttribute('class', 'box blue');
     // $box.className = 'box blue';
 
-    // 클래스를 각각 조작할 때는 className보다는 classList 프로퍼티를 사용하는 게 좋다.
+    // 4. classList 사용 
     console.log($box.classList); // 유사배열객체
 
-    
+/*
+ className과 classList 용도 차이
+ - className은 클래스 이름을 모두 바꾸고 싶을 때 사용
+ - classList는 클래스 이름이 여러 개일 경우 각각 조작할 때 사용
+*/
+
+
+// classList 사용 예시
 
     // 요소에 클래스를 추가
     // $box.className = 'box blue circle';

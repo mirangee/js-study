@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 우리반 학생들 4과목 점수(국영수탐)
+    // var kim = [67, 89, 92, 32];
+    // var lee = [100, 87, 55, 67];
+    // var park = [23, 44, 100, 22];
+
+    let ourStudentScore = [
+      [67, 89, 92, 32],
+      [100, 87, 55, 67],
+      [23, 44, 100, 22]
+    ];
+
+    // 반 평균을 구해봅시다.
+    // 각 학생의 점수를 더한 후 평균을 구한다.
+    
+    let eachStudentAvg = [0];
+
+    for (let i = 0; i < ourStudentScore.length; i++) {
+      let eachStudentSum = 0;
+      for (let j = 0; j < ourStudentScore[i].length; j++){
+        eachStudentSum += ourStudentScore[i][j];
+      }
+      eachStudentAvg.push(eachStudentSum / ourStudentScore[i].length);
+    }
+
+    console.log(eachStudentAvg);
+    
+     // 각각의 평균을 더한 후 학생 수로 나눈다.
+    let sum = 0;
+    for (let eachStudentScore of eachStudentAvg) {
+      sum += eachStudentScore;
+    }
+    let result = sum / ourStudentScore.length;
+   
+    console.log(`이 반의 평균은 ${Math.round(result*100)/100}입니다.`);
+   
+    
+  </script>
+</body>
+
+</html>

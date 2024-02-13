@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1 ~ 100 사이의 랜덤한 숫자하나가 정답으로 주어진다.
+    // 사용자는 이 사이의 숫자를 입력할 수 있어야 한다.
+    // 시스템은 입력한 숫자를 판단하여 up인지 down인지 알려줘야 한다.
+    // 만약 정답을 맞추지 못하면 지속해서 입력을 받고 결과를 알려준다.
+    // 정답을 맞추면 맞췄다는 메시지와 함께 프로그램을 종료한다.
+
+    
+    // 사용자는 게임 시작전에 난이도를 설정할 수 있다.
+    // 난이도는 상(3번), 중(6번), 하(10번) 난이도가 존재하며
+    // 난이도별 입력 횟수제한이 다르다.
+    // 사용자들은 입력 기회 안에 정답을 맞추지 못할 경우 게임이 강제종료된다.
+    
+    const number = Math.floor(Math.random()*99) + 1;
+    let input = 0;
+    let chance = 0;
+    let min = 1;
+    let max = 100;
+    console.log(number);
+    let level = +prompt('난이도를 선택하세요. \n 1. 상(3번), 2. 중(6번), 3. 하(10번)');
+    
+    if (level === 1) {
+      chance = 3;
+    } else if (level === 2) {
+      chance = 6;
+    } else if (level === 3) {
+      chance = 10;
+    } else {
+      chance = 3;
+      alert('잘못된 입력! 난이도 상으로 자동 시작합니다.')
+    }
+    console.log(chance);
+
+    while (true) {
+      if (chance === 0) {
+        alert('모든 기회를 소진했습니다.');
+        break;
+      } else {
+        input = +prompt(`${min}~${max} 사이의 숫자를 입력하세요. \n 남은 기회: ${chance}회`);
+        chance--;
+
+        if(number === input) {
+          alert('짝짝짝!! 정답입니다!');
+          break;
+        } else if(number <= input) {
+          alert('DOWN!!');
+          max = input - 1;
+          continue;
+        } else{
+          alert('UP!!!');
+          min = input + 1;
+          continue;
+        }
+      }
+    }
+    alert('수고하셨습니다. 게임이 종료됩니다.');
+   
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button type="button" id="btn1"> 클릭하세요!</button>
+  <button type="button" id="btn2"> 마우스를 올려보세요!</button>
+  <button type="button" id="btn3"> 마우스를 치워보세요!</button>
+ 
+ <script>
+  // 이벤트 핸들러 정의
+  function hello() {
+    alert('안녕하세유');
+  }
+
+  const $btn1 = document.getElementById('btn1');
+  const $btn2 = document.getElementById('btn2');
+  const $btn3 = document.getElementById('btn3');
+
+  // $btn1.onclick = hello;
+
+  $btn1.onclick = function() {  //onclick이라는 프로퍼티에 익명 함수 할당
+    alert('안녕하세요오오');
+  }
+
+  $btn2.onmouseover = function() {
+    alert('마우스 올렸지~~');
+  }
+
+  $btn3.onmouseout = () => alert('마우스 치웠지~~');  //화살표 함수로 표현
+
+
+  // 이벤트 핸들러 제거
+  $btn3.onmouseout = null; // null은 '그 무엇도 참조하지 않는다'는 뜻
+
+
+  // 프로퍼티 방식의 한계 : 하나의 요소에 이벤트를 여러 개 걸지 못한다.
+  $btn1.onclick = function() {  
+    alert('안녕 안 하세요');
+  }
+  
+  </script>
+</body>
+</html>

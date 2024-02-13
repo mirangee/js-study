@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">클릭</button>
+
+
+  <script>
+    const $btn = document.getElementById('btn');
+
+    // addEventListener('이벤트 타입', 핸들러 -> 콜백 방식)
+    $btn.addEventListener('click', function() {
+      alert('안녕하세요~');
+    });
+
+    // addEventListener에는 여러 개 이벤트를 적용할 수 있다.
+    $btn.addEventListener('click', () => {alert('hi, there')});
+
+    // 만약 핸들러가 따로 정의되어 있다면 그것도 콜백함수로 처리할 수 있다.
+    const helloHandler = () => {alert('Hello World')};
+    $btn.addEventListener('click', helloHandler);
+
+    // 핸들러 제거: removeEventListener('이벤트 타입', 핸들러)
+    // 단, 이름이 있는 핸들러만 제거 가능
+    $btn.removeEventListener('click', helloHandler);
+
+  </script>
+</body>
+</html>

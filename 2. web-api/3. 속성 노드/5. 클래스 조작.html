@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background: lightgray;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 100px;
+    }
+
+    .red {
+      color: red;
+    }
+
+    .blue {
+      color: blue;
+    }
+
+    .circle {
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box red">Hello</div>
+
+  <script>
+    const $box = document.querySelector('.box');
+
+    console.log($box.attributes.class.value);
+    console.log($box.getAttribute('class'));
+    console.log($box.className); // className -> 아예 클래스 이름을 모두 바꾸고 싶을 때 사용
+
+    // $box.setAttribute('class', 'box blue');
+    // $box.className = 'box blue';
+
+    // 클래스를 각각 조작할 때는 className보다는 classList 프로퍼티를 사용하는 게 좋다.
+    console.log($box.classList); // 유사배열객체
+
+    
+
+    // 요소에 클래스를 추가
+    // $box.className = 'box blue circle';
+    $box.classList.add('circle'); // 기존 class에 class 명을 추가하고 싶을 때 사용
+    $box.classList.add('abc', 'def', 'ghi'); // add를 여러번 부를 필요가 없음.
+    
+    // 요소에 특정 클래스를 교체
+    $box.classList.replace('red', 'blue'); // red를 blue로 교체
+
+    // 요소에 특정 클래스를 삭제
+    $box.classList.remove('circle'); //circle을 삭제
+    $box.classList.remove('abc', 'def', 'ghi'); // 여러 항목을 한번에 삭제 가능
+
+    // 요소에 특정 클래스가 존재하는지 확인 
+    // 참고: hasAttribute('class')는 클래스라는 속성이 있는지 확인하는 것임
+    console.log($box.classList.contains('red')); //false
+
+    // 함수 toggle(): 해당 클래스가 존재하면 삭제, 존재하지 않으면 추가
+    $box.classList.toggle('circle');
+    $box.classList.toggle('blue');
+
+  </script>
+</body>
+
+</html>

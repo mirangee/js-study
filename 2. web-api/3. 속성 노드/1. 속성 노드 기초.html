@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="name" value="kim" class="user-name">
+  <script>
+    const $input = document.querySelector('input'); // 태그 선택자 사용
+
+    console.log($input.attributes); //유사배열객체가 생성됨
+    
+    console.log($input.attributes[0].value); //text -> 프로퍼티의 0번 키값의 value
+    console.log($input.attributes.type.value); //text -> type이라는 키값의 value
+    console.log($input.attributes.id.value); //name -> id라는 키값의 value
+    console.log($input.attributes.class.value); //user-name -> class라는 키값의 value
+
+    $input.attributes.value.value = '메롱메롱';
+    //input 태그의 속성들 중 value라는 프로퍼티의 값을 '메롱메롱'으로 바꾸겠다
+
+    $input.attributes.type.value = 'password';
+    //input 태그의 속성들 중 type 프로퍼티의 값을 'password'로 바꾸겠다
+  </script>
+</body>
+</html>

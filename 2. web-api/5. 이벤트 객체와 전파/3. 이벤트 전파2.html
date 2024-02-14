@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #fruits {
+      list-style: none;
+      padding: 0;
+    }
+
+    #fruits>li {
+      width: 100px;
+      cursor: pointer;
+    }
+
+    #fruits>.active {
+      color: red;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="fruits">
+    <li id="apple" class="active">Apple</li>
+    <li id="banana">Banana</li>
+    <li id="grape">Grape</li>
+  </ul>
+
+  <div>선택된 과일은: <em class="msg">apple</em></div>
+  <br>
+  
+  # 새로운 과일 추가
+  <input type="text" class="text-box">
+  <button id="add">추가</button>
+
+  <script>
+    const $fruits = document.getElementById('fruits');
+    const $msg = document.querySelector('.msg');
+    const $liList = [...$fruits.children]; // 모든 li 요소를 배열에 담음.
+
+    // 이벤트 핸들러를 따로 등록 -> ul에 클릭이 발생하면 이벤트 발생
+    function activate(e) {
+
+      // e.target.matches 함수 : 이벤트 발생 타겟이 특정 요소인지를 알려줌
+      if (!e.target.matches('#fruits > li')) { //fruits ul 안에 li가 선택된 게 아니라면 이벤트 종료
+        return;
+      }
+
+      /*
+      1. 선택된 과일 이름을 em.msg에 작성해야 한다.
+      2. 선택된 과일 li에 클래스 active를 추가해야 한다.
+         동시에 기존에 있던 li의 active를 지워야 한다.
+      3. 새로운 과일 추가 입력 후 버튼을 누르면 리스트에 과일 추가된다.
+      4. enter를 눌러도 리스트에 과일 추가된다.
+      */
+
+      // em.msg에 이벤트가 발생된 과일 이름을 추가
+      // $msg.textContent = e.target.textContent; //텍스트를 그대로 끌어온다.
+      $msg.textContent = e.target.id; // id를 끌어올 수도 있다.
+
+      // active 클래스를 클릭된 요소에 추가하고
+      // 기존에 active를 가지고 있던 요소에 클래스를 삭제
+      for (let $li of $liList) {
+        /*
+        toggle() 매서드의 두번째 매개값으로 논리값을 전달할 수 있다.
+        해당 논리값이 true이면 지정한 클래스를 추가하고,
+        false이면 지정한 클래스를 삭제한다.
+        */
+        $li.classList.toggle('active', $li === e.target);
+      }
+    }
+
+    // ul에 이벤트 등록
+    $fruits.addEventListener('click', activate);
+
+
+    // 동적으로 과일을 추가하자
+    const $btn = document.getElementById('add');
+    const $textBox = document.querySelector('.text-box');
+
+    $btn.addEventListener('click', e => {
+      const $newLi = document.createElement('li'); //<li></li>
+      $newLi.textContent = $textBox.value; //<li>Orange</li>
+      $newLi.setAttribute('id', $textBox.value.toLowerCase()); // id 속성 추가, 사용자가 입력한 값 소문자로 일괄 변경
+      $fruits.appendChild($newLi);
+      $textBox.value = ''; //다음 입력을 위해 입력창 비우기
+      
+      // 새롭게 추가된 li에도 active 추가 대상 여부를 확인하기 위해 배열에 추가
+      $liList.push($newLi);
+    });
+
+    // 입력창 안에서 enter 누르면 버튼 클릭 효과와 동일한 효과를 내자
+    $textBox.addEventListener('keyup', e =>{
+      if(e.keyCode === 13) {
+        // click()은 요소를 직접 클릭한 것과 같은 효과를 줌.
+        // 클릭 이벤트가 발생할 수 있도록 유도
+        $btn.click();
+      }
+    });
+  </script>
+</body>
+
+</html>

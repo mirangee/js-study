@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <p>아무 곳이나 클릭하세요!</p>
+  <input type="checkbox">
+  <em class="message"></em> <br>
+  <hr>
+
+  <input type="text" id="input-text">
+  <p class="msg"></p>
+
+  <script>
+  
+  const $em = document.querySelector('.message');
+
+    /* 이벤트 객체란? 
+      addEventListener의 콜백함수에 첫번째 인수로
+      이벤트 객체(이벤트에 대한 여러 정보가 담겨 있음)가 자동 전달 된다.
+      핸들러 내에서 이벤트 객체를 사용하려면 적당한 매개변수를 선언해서 사용한다. (아래 예에선 e)
+    */
+
+    // document.addEventListener('click', function (e) { // 문서 전체에 이벤트 핸들러 등록
+    //   console.log('문서에 클릭 이벤트 발생!');
+    //   console.log(e); // 이벤트가 발생할 때마다 브라우저가 호출한 함수가 작동되고 여러 정보가 담긴 이벤트 객체가 만들어진다.
+
+    //   $em.textContent = `클릭하신 X좌표는 ${e.offsetX}, Y좌표는 ${e.offsetY}입니다.`;
+    // });
+
+    
+    const $checkbox = document.querySelector('input[type=checkbox]');
+
+    $checkbox.addEventListener('change', function(e) {
+
+      // e.target으로 지금 실제 이벤트가 발생한 요소를 얻을 수 있다.
+      // -> 이벤트 발생한 요소가 누구인지 파악하기 위해 많이 사용됨!
+      console.log(e.target); 
+      
+      // checked : 체크박스 or radio button의 체크 유무를 확인하는 프로퍼티
+      if(e.target.checked) {
+        $em.textContent = `checked.`;
+      } else {
+        $em.textContent = `unchecked.`;
+      }
+    });
+
+    ///////////////////////////////////////////////////////////////////////
+
+    const $input = document.getElementById('input-text');
+    const $msg = document.querySelector('.msg');
+
+    $input.addEventListener('keyup', e => {
+      //console.log('keyup 이벤트 발생!');
+      //console.log(`입력한 값: ${e.target.value}`); // e.target.value -> input 태그의 값
+      
+      console.log(e.keyCode); // e.keyCode -> 키보드 중에 어떤 자판을 눌렀는지 고유번호를 알려줌.
+      if (e.keyCode === 13) { // keyup한 자판이 enter라면
+        $msg.textContent = `${e.target.value}`; // 하단 p태그에 input 태그의 값 입력하기
+        e.target.value = ''; //입력창(e.target) 비우기
+      } else if (e.keyCode === 27) { // keyup한 자판이 esc라면
+        $msg.textContent = ''; // 하단 p태그 지우기
+      }
+    });
+
+    /* 키보드 이벤트 (keydown과 keyup의 차이)
+    - keydown은 키보드가 눌리는 즉시 발동되는 이벤트로,
+      자판에 입력이 미처 되기 전에 이벤트가 발생한다.
+      그래서 이벤트로 입력 확인 시 자판 입력이 이벤트 발동보다 늦다.
+    
+    - keyup은 키보드가 눌렸다 떼질 때 발동되는 이벤트이다.
+      이벤트로 입력 확인 시 자판 입력 후에 이벤트가 발동된다.
+    */
+  </script>
+
+</body>
+
+</html>

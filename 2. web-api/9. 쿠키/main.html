@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- js 임포트 -->
+  <script src="./popup.js"></script>
+</head>
+<body>
+  <h2>메인 화면</h2>
+  <div>
+    여기는 메인화면입니다~ <br>
+    아무튼 메인이라고 칩시다~
+  </div>
+
+  <script>
+    // 윈도우 이벤트 함수 
+    // onload: 윈도우 창이 모두 로딩된 후 바로 실행할 내용
+    window.onload = function() {
+      if(!getCookie('popup')) {
+        window.open('./popup.html', '메인팝업창', 'width = 320, height = 300, top = 500, left = 1000');
+      }
+    }
+  </script>
+</body>
+</html>

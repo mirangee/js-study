@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    const date = new Date(); // 오늘 날짜 정보를 가진 객체 
+    console.log(date.getTime());
+    // 날짜를 밀리초로 구함 (표준시 1970년 01월 01일 00:00부터 흐른 초)
+    // 시간 흐름을 계산할 때 주로 쓰임
+
+    const millis = 1693735023000;
+    const day = new Date(millis);
+    console.log(day);
+
+    console.log(date);
+    console.log(date.getFullYear()); //년
+    console.log(date.getMonth()); //월 : 인덱스처럼 0부터 시작. 0 -> 1월, 1 -> 2월, 2 -> 3월
+    console.log(date.getDate()); //일
+    console.log(date.getHours()); //시
+    console.log(date.getMinutes()); //분
+    console.log(date.getSeconds()); //초
+    console.log(date.getDay()); // 요일 : 인덱스처럼 0부터 시작. 0 -> 일요일, 1 -> 월요일, 2 -> 화요일
+
+    console.log('-------------------------------');
+
+    // 오늘 날짜 - 특정 날짜 (밀리초)
+    const gap = date.getTime() - millis;
+    console.log(gap);
+
+    let time;
+    if (gap < 60 * 60 * 24 * 1000) { // 하루 1일보다 작으면
+      if (gap < 60 * 60 * 1000) { // 한 시간보다 작으면
+        time = '방금 전';
+      }
+      time = `${gap / (60*60*1000)}시간 전`
+    } else { // 1일 보다 크면
+      const checkTime = new Date(gap);
+      console.log(checkTime); // gap의 밀리초를 단순히 날짜로 표현한 결과 값
+      const calcYear = checkTime.getFullYear() - 1970; // 1970을 빼야 차이값을 알 수 있다.
+      if (calcYear > 0) {
+        time = calcYear + '년 전';
+      } else {
+        time = `${checkTime.getMonth() + 1}개월 전`;
+      }
+
+      console.log(`지정된 날짜는 오늘로부터 ${time}입니다.`);
+    }
+  </script>
+</body>
+
+</html>

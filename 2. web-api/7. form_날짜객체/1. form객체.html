@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form action="#" name="regForm">
+    아이디: <input type="text" name="id"> <br>
+    비밀번호: <input type="password" name="pw"> <br>
+    번호:
+    <div>
+      <select name="phone">
+        <option>010</option>
+        <option>011</option>
+        <option>018</option>
+      </select>
+      - <input type="text" name="phone2">
+      - <input type="text" name="phone3">
+    </div>
+
+    자기소개: <br>
+    <textarea name="intro" cols="50" rows="5"></textarea>
+    <br>
+
+    분야:
+    <input type="checkbox" name="inter" value="java">Java
+    <input type="checkbox" name="inter" value="db">DB
+    <input type="checkbox" name="inter" value="jsp">Jsp
+    <input type="checkbox" name="inter" value="js">JavaScript
+
+    <!-- checkbox, radio에는 꼭 value 값이 있어야 한다.
+    input에는 name 값이 있어야 한다. -->
+
+    <!--
+        습관 들이기: button 태그에 type을 button으로 명시할 것!
+        button 태그에 type을 명시하지 않으면 form태그 내부에서
+        자동으로 submit으로 type이 인식됩니다.
+        버튼에 이벤트를 걸어서 입력값 검증 등 로직을 구현하고 싶다면
+        반드시 type="button"으로 설정해 놓으셔야 합니다.
+    -->
+    <button type="button" id="regist" onclick="check()">가입</button>
+    <input type="reset" value="초기화">
+    <!-- <input type="submit" value="회원가입"> -->
+
+  </form>
+
+  <script>
+
+    /*
+        - form 객체는 document 객체의 하위 객체 중 하나로
+        유일하게 name 속성으로만 form 요소의 접근이 가능합니다.
+        - form에도 name이 있어야 하며, name으로 내부 요소들에 접근이 가능합니다.
+        - document.폼이름.인풋이름 으로 접근합니다.
+    */
+
+    /* <요소 검증에 사용할 수 있는 프로퍼티 및 함수>
+        value - 값을 반환.
+        checked - 체크되어있다면 true, 그렇지 않으면 false
+        disabled - 비활성화라면 true, 그렇지 않으면 false
+        length - 요소의 길이 반환
+        focus() - 요소에 포커싱
+        submit() - form 내부 입력양식 제출 (action 경로로 전송)
+    */
+
+    function check() {
+      const $form = document.regForm; // form 태그는 요소를 취득할 때 form 태그의 name으로 바로 지목 가능
+      if($form.id.value === '') {
+        alert('아이디는 필수값입니다.');
+        $form.id.focus(); // 커서를 아이디 입력창에 포커싱
+        return; // 입력값이 마음에 들지 않기 때문에 이벤트 강제 종료
+      } else if($form.id.value.length <= 4) {
+        alert('아이디는 5자 이상으로 입력하세요.');
+        $form.id.focus();
+        return;
+      } else if ($form.pw.value === '') {
+        alert('비밀번호는 필수값입니다');
+        $form.pw.focus();
+        return;
+      } else if ($form.pw.value.length <= 8) {
+        alert('비밀번호는 9자 이상 입력하세요.');
+        return;
+      } else {
+        // console.log($form.inter); // 유사배열객체 형태로 모든 checkbox를 확인
+        let flag = true;
+        for(let $element of [...$form.inter]) {
+          if($element.checked) {
+            flag = true;
+            break;
+          }
+        }
+        if(!flag){
+          alert('분야를 1개 이상 체크해 주세요!');
+          return;
+        }
+
+        if(confirm('회원가입을 진행합니다')) {
+          $form.submit();
+        } else {
+          alert('회원가입을 취소합니다');
+          return;
+        }
+      } 
+    };
+  </script>
+</body>
+
+</html>

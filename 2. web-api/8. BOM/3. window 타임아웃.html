@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h3>5초 뒤에 경고창이 출력되는데 이 버튼을 누르면 실행되지 않습니다.</h3>
+  <button class="stop-time">취소</button>
+
+  <script>
+    // setTimeout은 일정 시간이 지연된 후에 함수를 실행한다.
+    // 매개변수로는 (실행 함수, 지연 시간(밀리초 단위))가 들어간다.
+    const func = setTimeout(() => {
+      alert('5초 후 하이');
+    }, 5000);
+
+    // 'clearTimeout(타임아웃함수)'는 setTimeout을 중지합니다.
+    document.querySelector('.stop-time').onclick = () => {
+      clearTimeout(func);
+    };
+  </script>
+</body>
+</html>

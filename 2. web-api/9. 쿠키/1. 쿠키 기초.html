@@ -35,7 +35,7 @@
       // setDate(세팅하고 싶은 날짜) -> 일자 설정 가능 (setYear(), setMonth() 등도 있음)
       console.log(date);
 
-      // 쿠키에 저장할 문자열을 생성(형식을 반드시 지켜주셔야 합니다.)
+      // 쿠키에 저장할 문자열을 생성(형식('name=value;expires=만료시간')을 반드시 지켜주셔야 합니다.)
       let cookie = '';
       cookie += name + '=' + value + ';'; //키=값; 설정
       cookie += 'expires=' + date.toUTCString(); //쿠키의 유효시간 추가

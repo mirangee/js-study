@@ -7,13 +7,21 @@ const logEntries = [];
 let seq = 0; // 로그 번호
 
 // 입력창에 입력한 숫자를 읽는 함수
+let flag = false;
 const getUserNumberInput = () => parseInt($userInput.value);
+
 
 // 계산 기능을 담당하는 함수
 const calculate = (type) => {
 
   const originalResult = currentResult; // 계산 전 값을 기억
   const enteredNumber = getUserNumberInput(); // 사용자 입력값 기억
+
+  // 숫자 입력을 안 할 경우 경고
+  if(!enteredNumber && enteredNumber !== 0) {
+    alert('숫자 입력은 필수입니다.');
+    return;
+  }
 
   let mark;
   if (type === 'ADD') {
@@ -27,6 +35,10 @@ const calculate = (type) => {
     currentResult *= enteredNumber;
   } else if (type === 'DIVIDE') {
     mark = '/';
+    if(enteredNumber === 0) {
+      alert('0으로 나눌 수 없습니다.'); // 0으로 나눌 경우 경고
+      return;
+    }
     currentResult /= enteredNumber;
   }
 

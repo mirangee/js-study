@@ -36,7 +36,7 @@ const calculate = (type) => {
   } else if (type === 'DIVIDE') {
     mark = '/';
     if(enteredNumber === 0) {
-      alert('0으로 나눌 수 없습니다.'); // 0으로 나눌 경우 경고
+      alert('0으로 나눌 수 없습니다.'); // 0으로 나눌 경우
       return;
     }
     currentResult /= enteredNumber;

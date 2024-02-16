@@ -1,0 +1,198 @@
+/* reset */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* layout */
+.wrapper {
+  height: 100vh;
+  background-color: #bebebe;
+  position: relative;
+}
+
+section.main {
+  width: 40%;
+  background-color: #f6f6f6;
+  
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+section.main .main-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  background-color: #53f1ff;
+  padding: 30px 20px;
+  border-bottom: 1px solid #d3d3d3;
+  text-align: center;
+}
+
+section.main .number-wrapper {
+  padding: 50px 20px;
+}
+
+section.main .number-wrapper h2 {
+  font-size: 1.2em;
+  text-decoration: underline;
+  text-align: center;
+}
+
+section.main .number-wrapper h2 em {
+  font-size: 1.3rem;
+  color: rgb(255, 46, 39);
+}
+
+#numbers {
+  width: 70%;
+  height: 400px;
+  overflow: auto;
+  border: 1px solid #000;
+  border-radius: 10px;
+  margin: 30px auto 0;
+  padding: 30px 0 30px 50px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#numbers .icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  font-size: 1.7em;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5%;
+  margin-bottom: 10%;
+  cursor: pointer;
+}
+
+#numbers .icon:nth-child(4n-3) {
+  background-color: rgb(255, 193, 22);
+}
+
+#numbers .icon:nth-child(4n-2) {
+  background-color: rgb(231, 255, 11);
+}
+
+#numbers .icon:nth-child(4n-1) {
+  background-color: rgb(0, 255, 76);
+}
+
+#numbers .icon:nth-child(4n) {
+  background-color:tomato;
+}
+
+#numbers .icon:hover {
+  transform: scale(1.1); 
+  opacity: 0.8;
+}
+
+.result {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  transform: translateY(-50%);
+}
+
+.result div {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.result #up {
+  background-color: rgb(255, 72, 0);
+}
+
+.result #down {
+  background-color: rgb(0, 119, 255);
+}
+
+.result div.selected {
+  animation: jumping 0.3s infinite linear alternate;
+}
+@keyframes jumping {
+  0% {
+      transform: translateY(0);
+  }
+  50% {
+      transform: translateY(-10px);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
+}
+
+#finish {
+  width: 60%;
+  height: 200px;
+  background-color: tomato;
+  font-size: 5em;
+  font-weight: 700;
+  border: 2px dashed #000;
+  text-align: center;
+  line-height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  z-index: -100;
+}
+
+#finish.show {
+  animation: showUp 1s linear forwards;
+}
+@keyframes showUp {
+  0% {
+      opacity: 0;
+      top: -50%;
+  }
+  50% {
+      opacity: 0.5;
+      top: 0;
+  }
+  100% {
+      opacity: 1;
+      top: 50%;
+      z-index: 100;
+  }
+}
+
+/* 정답아이콘에 id="move"가 붙으면 아이콘이 커지면서
+움직이는 애니메이션 */
+.icon#move {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  z-index: 10;
+  border: 4px dashed #000;
+  animation: move 1s linear forwards;
+}
+@keyframes move {
+  0% {
+      top: 0;
+      transform: translateX(0) rotate(0) scale(1);
+  }
+  100% {
+      top: 10%;
+      transform: translateX(-50%) rotate(720deg) scale(2);
+  }
+}

@@ -112,14 +112,87 @@ function changeCheckState($ele) {
   data-id를 얻어서, 그와 일치하는 객체의 done 값을 true로 바꿔야 합니다.
   만약, 기존의 값이 true였다? 그럼 false로 바뀌는 거에요.
   */
- 
- for (let t of todos) {  
-  if (t.id === +$ele.parentNode.dataset.id) {
-    t.done = !t.done; // 논리를 반전해서 넣음
-  } 
- }
+
+  //  for (let i = 0; i < todos.length; i++) {  
+  //   if (todos[i].id === +$ele.parentNode.dataset.id) {
+  //     todos[i].done = !todos[i].done; // 논리를 반전해서 넣음
+  //   } 
+  //  }
+  const dataId = +$ele.parentNode.dataset.id;
+  const index = findIndexByDataId(dataId);
+  todos[index].done = !todos[index].done;
+
 };
 
+
+// 할 일 삭제하는 함수
+function removeTodoData($li) {
+  // 애니메이션 적용을 위해 클래스 이름을 추가 (delMoving)
+  $li.classList.add('delMoving');
+
+  // ul 안에 있는 li를 removeChild로 제거하기 전에 애니메이션 발동 및
+  // 배열 내부 객체 삭제가 진행될 수 있도록 시간을 일부러 지연.
+  // 시간 지연은 1.5초 진행해 주세요. (시간을 지연하는 window 함수가 있었습니다.)
+  const $ul = document.querySelector('.todo-list');
+  window.setTimeout(() => {
+    $ul.removeChild($li)
+  }, 1500);
+
+  // 배열 내에 있는 객체도 삭제를 진행.
+  // 삭제되는 객체가 배열 안에 몇번째 인지를 확인 -> 할 일 완료 처리 함수쪽에 비슷한 로직이 있습니다.
+  // 함수화 시켜보세요.
+
+  const index = findIndexByDataId(+$li.dataset.id);
+  todos.splice(index, 1);
+  console.log(todos);
+}
+
+// data-id 값으로 배열을 탐색하여 일치하는 객체가 들어있는 인덱스 반환
+function findIndexByDataId(dataId) {
+  for (let i = 0; i < todos.length; i++) {
+    if (dataId === todos[i].id) {
+      return i;
+    }
+  }
+}
+
+// 할 일 수정하는 함수
+function enterModifyMode($modSpan) {
+  // 수정 모드 진입 버튼을 교체 (lnr-undo -> lnr-checkmark-circle)
+  $modSpan.classList.replace('lnr-undo', 'lnr-checkmark-circle');
+
+  // span.text를 input태그로 교체 (replaceChild)
+  // input 태그에는 .mod-input을 추가하시고, input에는 기존의 할 일 텍스트가 미리 작성되어 있어야 합니다.
+  const $label = $modSpan.parentNode.previousElementSibling;
+  const $textSpan = $label.lastElementChild;
+
+  const $modInput = document.createElement('input');
+  $modInput.classList.add('modify-input');
+  $modInput.setAttribute('value', $textSpan.textContent); //기존 할 일 텍스트를 input에 미리 세팅
+
+  $label.replaceChild($modInput, $textSpan); // replaceChild(새로운 요소, 구요소)
+}
+
+// 수정 후 완료하는 함수
+function modifyTodoData($modCompleteSpan) {
+  
+  // 버튼을 원래대로 돌립니다. (lnr-undo)
+  $modCompleteSpan.classList.replace('lnr-checkmark-circle', 'lnr-undo');
+
+  // input을 다시 span.txt로 변경
+  const $newSpan = document.createElement('span');
+  $newSpan.classList.add('text');
+
+  const $input = document.querySelector('.modify-input');
+  $newSpan.textContent = $input.value;
+
+  const $label = $modCompleteSpan.parentNode.previousElementSibling;
+  $label.replaceChild($newSpan, $input);
+
+  // 배열 내의 id가 일치하는 객체를 찾아서 text 프로퍼티의 값을 수정된 값으로 변경해 주셔야 합니다.
+  let idx = findIndexByDataId(+$modCompleteSpan.parentNode.parentNode.dataset.id);
+  todos[idx].text = $input.value;
+}
 
 // main 역할을 하는 즉시 실행 함수
 (function () {
@@ -142,7 +215,22 @@ function changeCheckState($ele) {
     changeCheckState(e.target.parentNode); // label을 함수 매개값으로 전달
   })
 
-  // 할 일 삭제 이벤트 등록
+  // 할 일 삭제 이벤트 등록;
+  $ul.addEventListener('click', (e) => {
+    if (!e.target.matches('span.lnr-cross-circle')) {
+      return;
+    }
+    removeTodoData(e.target.parentNode.parentNode); // 이벤트가 발생한 곳의 조상을 매개값으로 전달(li)
+  })
 
   // 할 일 수정 이벤트(수정 모드 진입, 수정 완료) 등록
+  $ul.addEventListener('click', (e) => {
+    if (e.target.matches('span.lnr-undo')) {
+      enterModifyMode(e.target) // 수정모드로 진입
+    } else if (e.target.matches('span.lnr-checkmark-circle')) {
+      modifyTodoData(e.target);
+    } else {
+      return;
+    }
+  })
 })();
